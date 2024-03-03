@@ -42,6 +42,7 @@ header {
         label {
             text-align: center;
             font-size: smaller;
+            color: #184047;
         }
         button {
             font-size: 1rem;
@@ -53,12 +54,13 @@ header {
             padding: 1rem;
             font-size: 70px;
             font-weight: 700;
-            color: hsla(0, 0%, 0%, 0.562);
+            line-height: 1em;
+            color:hsla(189, 49%, 19%, 0.8);
         }
     }
     button#start {
         font-size: smaller;
-        margin: 1rem;
+        margin: 10px;
         align-self: center;
         width: fit-content;
         padding: 0.4rem 1.3rem;
@@ -67,26 +69,27 @@ header {
         border-radius: 10px;
         border: 1px solid aliceblue;
         font-weight: 700;
-        font-size: 1rem;
     }
 }
 
 main {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     .message {
-        flex: 1;
+        max-width: 300px;
         font-weight: 600;
-        font-size: 1.1rem;
-        color: aliceblue;
+        text-align: center;
+        font-size: 1.3rem;
+        color: #184047;
     }
 }
 
 .board {
     margin: 10px;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
+    min-height: 130px;
     display: grid;
     grid-template-columns: repeat(3,100px);
     justify-content: center;
@@ -114,7 +117,8 @@ header button, .board button {
     &.⭘ {
         line-height: 1rem;
         background-color: #95d9e5;
-        color: black;
+        color:#184047;
+        font-weight: 600;
     }
 }
 

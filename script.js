@@ -2,7 +2,6 @@ const gameboard = (function () {
     let board = Array(9).fill('');
     const getBoard = () => board;
     const isFull = () => {
-        console.log(board);
         return !board.includes('')
     }
     const reset = () => board.fill('');
@@ -53,7 +52,6 @@ const game = (function () {
     const message = () => {
         let msg;
         if (winner === undefined){
-            console.log(gameboard.isFull());
             msg = (gameboard.isFull() === true) 
             ? `It's a tie!` 
             : `${switchPlayerTurn().name} it's your turn`;
@@ -71,14 +69,14 @@ const game = (function () {
             setTimeout(() => {
                 winner = undefined;
                 controller.board.restart();
-            }, 2500);
+            }, 1500);
         } else if (gameboard.isFull()) {
             controller.scoreUpdate();
             setTimeout(() => {
-                gameboard.reset();
                 winner = undefined;
+                gameboard.reset();
                 controller.board.restart();
-            }, 2500);
+            }, 1500);
         }
     }
 
@@ -88,7 +86,7 @@ const game = (function () {
         return {add,get}
     })();
 
-    return {play,message,getPlayerTurn,createPlayer,score,players}
+    return {play,message,getPlayerTurn,getWinner,createPlayer,score}
 })();
 
 const controller = (function () {
@@ -100,11 +98,13 @@ const controller = (function () {
                 const cell = document.createElement('button');
                 cell.setAttribute('id',i);
                 cell.addEventListener('click', (event) => {
-                    cell.classList.add(game.getPlayerTurn().symbol);
-                    cell.textContent = game.getPlayerTurn().symbol;
-                    game.play(event.target.id,game.getPlayerTurn().symbol);
-                    message.write();
-                    cell.disabled = true;
+                    if (game.getWinner() === undefined) {
+                        cell.classList.add(game.getPlayerTurn().symbol);
+                        cell.textContent = game.getPlayerTurn().symbol;
+                        game.play(event.target.id,game.getPlayerTurn().symbol);
+                        message.write();
+                        cell.disabled = true;
+                    }
                 });
                 board.appendChild(cell);
             }
