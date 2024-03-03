@@ -99,6 +99,10 @@ main {
         font-size: 40px;
         background-color: transparent;
     }
+    button:hover:not(:disabled) {
+        opacity: 0.8;
+        border: 2px solid yellow;
+    }
 }
 
 header button, .board button {
